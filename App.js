@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, StatusBar, TextInput, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TextInput, Dimensions, Platform, ScrollView } from 'react-native';
+import ToDo from './ToDo'
 
 const { height, width } = Dimensions.get('window'); 
 
@@ -14,12 +15,14 @@ export default function App() {
           style={styles.input} 
           placeholder={'New To Do'} 
           onChangeText={newToDo => setNewToDo(newToDo)} 
-          // defaultValue={newToDo}
           value={newToDo}
           placeholderTextColor={'#928A97'}
           returnKeyType={'done'}
           autoCorrect={false}
         />
+        <ScrollView contentContainerStyle={styles.toDos}>
+          <ToDo text={"Hello I'm a To Do"}/>
+        </ScrollView>
       </View>
     </View>
   );
@@ -63,6 +66,9 @@ const styles = StyleSheet.create({
     padding: 20,
     borderBottomColor: '#928A97',
     borderBottomWidth: 1,
-    fontSize: 17
+    fontSize: 25 // fontsize 버그
+  },
+  toDos: {
+    alignItems: 'center'
   }
 });
