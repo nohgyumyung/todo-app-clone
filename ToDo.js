@@ -7,12 +7,11 @@ export default function ToDo(props) {
     const [isEditing, setIsEditing] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
     const [toDoValue, setToDoValue] = useState(props.text);
-    // const [controlInput, setControlInput] = useState('');
 
     const toggleComplete = () => setIsCompleted(prevState => !prevState);
     const startEditing = () => setIsEditing(prevState => true, toDoValue => props.text); 
     const finishEditing = () => setIsEditing(prevState => false); // 글 저장을 위해 toggle 사용하지 않음
-    // const controlInput = () => setToDoValue(toDoValue => props.text)
+    const controlInput = () => setToDoValue(toDoValue => props.text)
 
     return (
         <View style={styles.container}>
@@ -28,7 +27,7 @@ export default function ToDo(props) {
                             isCompleted ? styles.completedText: styles.uncompletedText]} 
                         value={toDoValue}
                         multiline={true}
-                        onChangeText={toDoValue => setToDoValue(toDoValue)}
+                        onChangeText={controlInput}
                         returnKeyType={'done'}
                         onBlur={finishEditing} // 칸 밖을 클릭하면 편집 종료
                     />) : (
